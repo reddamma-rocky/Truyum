@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Truyum.Models.MenuItem>
+
+@{
+    ViewBag.Title = "Cart";
+}
+<h1>Cart</h1>
+@if (ViewBag.empty=="True")
+{
+    <p>
+        No Items In Cart @Html.ActionLink("View Menu Items", "Index")
+    </p>
+}
+else{
+        <p>
+            @Html.ActionLink("Menu Items", "Index")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.freeDelivery)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.freeDelivery)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remove", "Delete", new { id = item.id })
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+}

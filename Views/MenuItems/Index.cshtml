@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Truyum.Models.MenuItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Menu items</h1>
+
+
+@if (ViewBag.Type == "Admin")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Active
+            </th>
+            <th>
+                Date Of Launch
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Free Delivery
+            </th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateOfLaunch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.freeDelivery)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <p>
+        Customer 
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Price
+            </th>
+
+            <th>
+                Category
+            </th>
+            <th>
+                Free Delivery
+            </th>
+            <th>Action</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.freeDelivery)
+                </td>
+                <td>
+                    @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
